@@ -98,7 +98,7 @@ From a CAP-Theorem perspective Couchbase can be operated as a CP or CA system. B
 
 \subsection{SDK}
 \label{section:SDK}
-To use Couchbase productively in a development environment this last section shall discuss the available software development kit and give some examples on how to use it to perform basic CRUD operations on the cluster's data.\\
+To use Couchbase productively in a development environment this last section shall discuss the available software development kit and give some examples on how to use it to perform basic \gls{crud} operations on the cluster's data.\\
 First of all, Couchbase offers SDKs for several popular programming languages and runtime environments inlcuding C, Go, Java, .NET, Node.js, PHP and Python. \parencite{couchbaseSDK} Since it would be out of scope to give examples for all of them, this section will limit the examples to the Node.js SDK, but the information given will be easily transferable to other languages as well.
 
 First, a connection to the Couchbase Cluster needs to be established. Afterwards, authentication is necessary to select the desired bucket. Once there is a bucket object it can be used to send queries. The described steps can be seen in Listing \ref{couchbaseAuthAndBucket}.\\
@@ -113,7 +113,7 @@ const bucket = cluster.openBucket('demo-bucket');
 \end{listing}
 
 \newpage
-Two different kinds of interacting with the data shall be looked at. The first option is to use the core operations upsert(docId, document), insert(docId, document), replace(docId, document), get(docId) and remove(docId) to execute the basic CRUD operations. Insert will only insert the document if the docId isn't found, replace will only replace the document if the docId is found and upsert will always replace the document (ignoring if the docId existed or not). The second option is to use N1QL queries described in \autoref{n1ql} to query the desired data. Examples for both options can be seen in Listing \ref{couchbaseCRUD} and Listing \ref{couchbaseSDKN1QL}.\\
+Two different kinds of interacting with the data shall be looked at. The first option is to use the core operations upsert(docId, document), insert(docId, document), replace(docId, document), get(docId) and remove(docId) to execute the basic \gls{crud} operations. Insert will only insert the document if the docId isn't found, replace will only replace the document if the docId is found and upsert will always replace the document (ignoring if the docId existed or not). The second option is to use N1QL queries described in \autoref{n1ql} to query the desired data. Examples for both options can be seen in Listing \ref{couchbaseCRUD} and Listing \ref{couchbaseSDKN1QL}.\\
 
 \begin{listing}[ht]
 \begin{minted}{js}
