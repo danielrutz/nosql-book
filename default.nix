@@ -1,4 +1,8 @@
-with import <nixpkgs> {};
+with import (fetchTarball {
+  url = "https://github.com/nixos/nixpkgs-channels/archive/5d3fd36.tar.gz";
+  sha256 = "1yjn56jsczih4chjcll63a20v3nwv1jhl2rf6rk8d8cwvb10g0mk";
+}) {};
+  
 
 let
   latexPackage = texlive.combine {
@@ -63,13 +67,11 @@ let
     };
 
   mainFile = "main.tex";
-  pName = "stgtinf16a-nosql-book";
-  pVersion = "0.0.1";
 
 in
   stdenv.mkDerivation rec {
-    name = "${pName}-${version}";
-    version = pVersion;
+    pname = "stgtinf16a-nosql-book";
+    version = "0.0.1";
 
     src = ./.;
 
@@ -79,7 +81,7 @@ in
       which
     ];
 
-    configurePhase = ''
+    preBuild = ''
       # We could be building from an unclean directory, so remove intermediate files first
       latexmk -C
       rm -f "$(basename ${mainFile} .tex).bbl" "$(basename ${mainFile} .tex).run.xml"
@@ -90,8 +92,7 @@ in
     '';
 
     installPhase = ''
-      mkdir $out
-      mv "./$(basename ${mainFile} .tex).pdf" $out/
+      mv "./$(basename ${mainFile} .tex).pdf" $out
     '';
 
     doCheck = true;

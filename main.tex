@@ -9,7 +9,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 
-\usepackage[hidelinks, pdfpagelabels]{hyperref}
+\usepackage[hidelinks, pdfpagelabels, pdfusetitle]{hyperref}
 \hypersetup{hypertexnames=false}
 \usepackage{enumitem}
 \usepackage{suffix}
@@ -35,15 +35,22 @@
 \usepackage{minted}
 \usemintedstyle[js]{vs}
 \usepackage{tikz}
+\usetikzlibrary{intersections,arrows.meta}
+
 
 % Citation packages and options
 \usepackage{csquotes}
 \usepackage[
   backend=biber,
-  style=apa
+  style=apa,
 ]{biblatex}
 \addbibresource{bibliography.bib}
+% Break long URLs in sources
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+
 \DeclareLanguageMapping{english}{english-apa}
+
 
 % Correct listing references
 \providecommand*{\listingautorefname}{Listing}
@@ -72,7 +79,7 @@
 
 
 \title{NoSQL Databases}
-\author{Daniel Rutz and Leon Schürmann (Eds.)}
+\author{Course STG-TINF16A of the Baden-Wuerttemberg Cooperative State University Stuttgart}
 \date{\today}
 
 \begin{document}
@@ -80,22 +87,26 @@
 \maketitle
 \tableofcontents
 
+
 \printglossaries
 
-\input{content/aa_test}
 
-
+\input{content/2_0_key_value}
+\input{content/2_1_hazelcast}
 \input{content/2_2_redis}
 \input{content/2_3_riak}
+\input{content/3_0_cassandra}
 \input{content/4_0_document_oriented}
 \input{content/4_1_couchbase}
+\input{content/4_2_rethink_db}
 \input{content/5_0_graph_db}
 
 
 \printbibliography
 
 \appendix
-\input{appendix/3_1_cassandra}
+\input{appendix/3_0_cassandra}
+\input{appendix/4_2_rethink_db.tex}
 
 
 \end{document}
